@@ -36,26 +36,26 @@ int valeur(int couleur)
 
 int main()
 {
-    // Initialisation du générateur de nombres aléatoires
+    
     srand(time(NULL));
 
-    // Génération du code secret
+    
     int code[4];
     for (int i = 0; i < 4; i++)
     {
         code[i] = rand() % 6 + 1;
     }
 
-    // Début du jeu
+    
     int tentatives = 0;
     while (tentatives < 10)
     {
-        // Lecture de la tentative de l'utilisateur
+        
         int tentative[4];
         printf("Entrez votre tentative (4 chiffres de 1 a 6) : ");
         scanf("%1d%1d%1d%1d", &tentative[0], &tentative[1], &tentative[2], &tentative[3]);
 
-        // Vérification de la tentative
+        
         int correctes = 0;
         int proches = 0;
         int codeCount[6] = {0};
@@ -78,7 +78,7 @@ int main()
         }
         proches -= correctes;
 
-        // Affichage des résultats de la tentative
+        
             for (int i = 0; i < correctes; i++) {
                 printf("w ");
             }
@@ -90,7 +90,7 @@ int main()
             }
             printf("\n");
 
-        // Vérification de la victoire
+        
         if (correctes == 4)
         {
             printf("Bravo, vous avez trouvé le code secret en %d tentatives !\n", tentatives + 1);
@@ -98,11 +98,11 @@ int main()
             return 0;
         }
 
-        // Incrément du nombre de tentatives
+        
         tentatives++;
     }
 
-    // Affichage de la défaite et du code secret
+    
     printf("Perdu, vous n'avez pas réussi à trouver le code secret en 10 tentatives.\n");
     printf("Le code secret était : ");
     for (int i = 0; i < 4; i++)
@@ -150,5 +150,6 @@ int main()
 //     }
 //     printf("\n");
 // }
+
 
 
