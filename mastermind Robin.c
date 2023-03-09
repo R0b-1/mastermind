@@ -39,20 +39,12 @@ int main()
     // Initialisation du générateur de nombres aléatoires
     srand(time(NULL));
 
-   int code[4];
-    printf("Code secret : ");
+    // Génération du code secret
+    int code[4];
     for (int i = 0; i < 4; i++)
     {
-    int couleur;
-    do
-    {
-        couleur = rand() % 6 + 1;
-    } while (couleur == code[0] || couleur == code[1] || couleur == code[2] || couleur == code[3]);
-    code[i] = couleur;
-    printf("%d ", code[i]);
+        code[i] = rand() % 6 + 1;
     }
-    printf("\n");
-
 
     // Début du jeu
     int tentatives = 0;
@@ -61,9 +53,7 @@ int main()
         // Lecture de la tentative de l'utilisateur
         int tentative[4];
         printf("Entrez votre tentative (4 chiffres de 1 a 6) : ");
-        scanf("%d%d%d%d", &tentative[0], &tentative[1], &tentative[2], &tentative[3]);
-        while (getchar() != '\n');
-
+        scanf("%1d%1d%1d%1d", &tentative[0], &tentative[1], &tentative[2], &tentative[3]);
 
         // Vérification de la tentative
         int correctes = 0;
@@ -71,12 +61,8 @@ int main()
         int codeCount[6] = {0};
         int nbrTentatives[6] = {0};
         for (int i = 0; i < 4; i++)
-        
         {
-            for (int j = 0; i < 4; j++){
-
-            
-            if (tentative[i] == code[j])
+            if (tentative[i] == code[i])
             {
                 correctes++;
             }
@@ -85,7 +71,7 @@ int main()
                 codeCount[code[i] - 1]++;
                 nbrTentatives[tentative[i] - 1]++;
             }
-        }}
+        }
         for (int i = 0; i < 6; i++)
         {
             proches += (codeCount[i] < nbrTentatives[i]) ? codeCount[i] : nbrTentatives[i];
@@ -93,24 +79,22 @@ int main()
         proches -= correctes;
 
         // Affichage des résultats de la tentative
-        for (int i = 0; i < correctes; i++)
-        {
-            printf("w");
-        }
-        for (int i = 0; i < proches; i++)
-        {
-            printf("r");
-        }
-        for (int i = 0; i < 4 - correctes - proches; i++)
-        {
-            printf(".");
-        }
-        printf("\n");
+            for (int i = 0; i < correctes; i++) {
+                printf("w ");
+            }
+            for (int i = 0; i < proches; i++) {
+                printf("r ");
+            }
+            for (int i = 0; i < 4 - correctes - proches; i++) {
+                printf(". ");
+            }
+            printf("\n");
 
         // Vérification de la victoire
         if (correctes == 4)
         {
             printf("Bravo, vous avez trouvé le code secret en %d tentatives !\n", tentatives + 1);
+            system("pause");
             return 0;
         }
 
@@ -118,17 +102,18 @@ int main()
         tentatives++;
     }
 
-    // Affichage de la défaite
-    printf("Perdu,\nLe code secret était : ");
+    // Affichage de la défaite et du code secret
+    printf("Perdu, vous n'avez pas réussi à trouver le code secret en 10 tentatives.\n");
+    printf("Le code secret était : ");
     for (int i = 0; i < 4; i++)
     {
         printf("%d ", code[i]);
     }
     printf("\n");
+    system("pause");
 
     return 0;
 }
-
 
 // void rangementator(int tab[4]){
 //     int i;
@@ -165,4 +150,5 @@ int main()
 //     }
 //     printf("\n");
 // }
+
 
